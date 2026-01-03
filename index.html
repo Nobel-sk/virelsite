@@ -20,7 +20,7 @@
       --card-bg: #f8fafc;
       --border: #e2e8f0;
       --success: #10b981;
-      --warning: #f59e0b;
+      --error: #ef4444;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -33,27 +33,17 @@
       }
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* Navigation */
     header {
       position: fixed;
       top: 0;
@@ -63,13 +53,10 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       z-index: 1000;
-      transition: background-color 0.3s ease;
     }
 
     @media (prefers-color-scheme: dark) {
-      header {
-        background-color: rgba(15, 23, 42, 0.95);
-      }
+      header { background-color: rgba(15, 23, 42, 0.95); }
     }
 
     nav {
@@ -99,45 +86,22 @@
       transition: color 0.3s ease;
     }
 
-    .nav-links a:hover {
-      color: var(--primary);
-    }
+    .nav-links a:hover { color: var(--primary); }
 
-    .mobile-menu {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--text);
-      cursor: pointer;
-    }
+    .mobile-menu { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text); cursor: pointer; }
 
-    /* Hero Section */
     .hero {
-      padding: 8rem 0 6rem;
+      padding: 8rem 0 4rem;
       text-align: center;
       background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
     }
 
     @media (prefers-color-scheme: dark) {
-      .hero {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      }
+      .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
     }
 
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: var(--text);
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--text-light);
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
-    }
+    .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text); }
+    .hero p { font-size: 1.25rem; color: var(--text-light); max-width: 700px; margin: 0 auto 2.5rem; }
 
     .cta-button {
       display: inline-block;
@@ -158,257 +122,224 @@
       box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.5);
     }
 
-    /* Sections */
-    section {
-      padding: 6rem 0;
-    }
+    .auth-section { padding: 4rem 0; background: var(--card-bg); }
 
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 4rem;
-      color: var(--text);
-    }
-
-    /* About */
-    .about-content {
-      max-width: 800px;
+    .auth-card {
+      max-width: 480px;
       margin: 0 auto;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: 1rem;
       text-align: center;
-      font-size: 1.125rem;
+      font-weight: 600;
+      cursor: pointer;
       color: var(--text-light);
-      line-height: 1.8;
+      transition: all 0.3s ease;
     }
 
-    /* How It Works */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
+    .auth-tab.active {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
     }
 
-    .step {
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text); }
+
+    .form-input {
+      width: 100%;
+      padding: 0.875rem 2.5rem 0.875rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      transition: border 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-10%);
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .auth-button {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-button:hover { background: var(--primary-dark); }
+
+    .auth-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .success-message { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid var(--success); }
+    .error-message { background: rgba(239, 68, 68, 0.1); color: var(--error); border: 1px solid var(--error); }
+
+    /* Dashboard Styles */
+    .dashboard {
+      padding: 6rem 0;
+      display: none; /* Hidden until logged in */
+    }
+
+    .task-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 1rem;
       padding: 2rem;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
     }
 
-    .step:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-    }
-
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      background: var(--primary);
-      color: white;
-      font-size: 1.5rem;
-      font-weight: 700;
-      border-radius: 50%;
+    .prompt-input {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1.1rem;
+      min-height: 150px;
+      resize: vertical;
       margin-bottom: 1.5rem;
     }
 
-    .step h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text);
+    .mode-toggle {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
-    /* Pricing */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .pricing-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 2.5rem;
-      text-align: center;
+    .mode-button {
+      flex: 1;
+      padding: 1rem;
+      border: none;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .pricing-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-    }
-
-    .pricing-card.featured {
-      border: 2px solid var(--primary);
-      position: relative;
-    }
-
-    .featured-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
+    .mode-button.active {
       background: var(--primary);
       color: white;
-      padding: 0.5rem 1.5rem;
-      border-radius: 999px;
-      font-size: 0.875rem;
-      font-weight: 600;
     }
 
-    .plan-name {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    .plan-price {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin: 1.5rem 0;
-    }
-
-    .plan-features {
-      list-style: none;
-      margin: 2rem 0;
+    .mode-button:not(.active) {
+      background: var(--card-bg);
       color: var(--text-light);
     }
 
-    .plan-features li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
+    .generate-button {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .plan-features li:last-child {
-      border-bottom: none;
+    .generate-button:hover {
+      background: var(--primary-dark);
     }
 
-    /* FAQ */
-    .faq {
-      max-width: 800px;
-      margin: 0 auto;
+    .generate-button:disabled {
+      background: var(--text-light);
+      cursor: not-allowed;
     }
 
-    .faq-item {
+    .task-list {
+      margin-top: 4rem;
+    }
+
+    .task-item {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 1rem;
-      margin-bottom: 1rem;
-      overflow: hidden;
-    }
-
-    .faq-question {
       padding: 1.5rem;
-      font-weight: 600;
-      cursor: pointer;
+      margin-bottom: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background 0.3s ease;
     }
 
-    .faq-question:hover {
-      background: rgba(99, 102, 241, 0.05);
-    }
-
-    .faq-answer {
-      padding: 0 1.5rem 1.5rem;
-      color: var(--text-light);
-      display: none;
-    }
-
-    .faq-item.active .faq-answer {
-      display: block;
-    }
-
-    /* Feedback */
-    .feedback {
-      text-align: center;
-      font-size: 1.125rem;
-      color: var(--text-light);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* Terms */
-    .terms {
-      max-width: 900px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 3rem;
-      color: var(--text-light);
-      line-height: 1.8;
-    }
-
-    .terms h2 {
-      color: var(--text);
-      margin-bottom: 1.5rem;
-    }
-
-    .terms ol {
-      padding-left: 2rem;
-      margin: 1.5rem 0;
-    }
-
-    .terms li {
-      margin-bottom: 1rem;
-    }
-
-    /* Contact */
-    .contact {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-email {
-      font-size: 1.5rem;
+    .task-title {
       font-weight: 600;
-      color: var(--primary);
-      margin: 2rem 0;
+      color: var(--text);
     }
 
-    /* Footer */
-    footer {
-      background: var(--card-bg);
-      border-top: 1px solid var(--border);
-      padding: 3rem 0;
-      text-align: center;
-      color: var(--text-light);
+    .task-type {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
     }
 
-    /* Responsive */
+    .task-type.text { background: rgba(99, 102, 241, 0.2); color: var(--primary); }
+    .task-type.image { background: rgba(168, 85, 247, 0.2); color: var(--secondary); }
+
+    .view-button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+    }
+
+    section { padding: 6rem 0; }
+    .section-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 4rem; color: var(--text); }
+
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.75rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .mobile-menu {
-        display: block;
-      }
-
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
-      }
+      .hero h1 { font-size: 2.75rem; }
+      .nav-links { display: none; }
+      .mobile-menu { display: block; }
+      .section-title { font-size: 2rem; }
+      .mode-toggle { flex-direction: column; }
     }
   </style>
 </head>
@@ -417,220 +348,289 @@
   <header>
     <div class="container">
       <nav>
-        <a href="#" class="logo">Virel</a>
+        <a href="#home" class="logo">Virel</a>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#auth">Sign Up / Login</a></li>
+          <li><a href="#dashboard">Dashboard</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#feedback">Feedback</a></li>
-          <li><a href="#terms">Terms</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="mobile-menu">☰</button>
       </nav>
     </div>
   </header>
 
-  <!-- Home / Hero -->
+  <!-- Hero -->
   <section id="home" class="hero">
     <div class="container">
       <h1>Virel — AI-Powered Text & Content App</h1>
       <p>Virel helps you generate, rewrite, and improve text using advanced artificial intelligence. Perfect for social media posts, school assignments, business communication, and everyday writing.</p>
-      <a href="#" class="cta-button">Coming Soon — Join Waitlist</a>
+      <a href="#auth" class="cta-button">Get Started — Sign Up Free</a>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about">
+  <!-- Sign Up / Login -->
+  <section id="auth" class="auth-section">
     <div class="container">
-      <h2 class="section-title">About Virel</h2>
-      <div class="about-content">
-        <p>Virel is a student-led startup based in Ghana, passionate about making powerful AI writing tools accessible and affordable to everyone.</p>
-        <p>We believe that great communication should not be limited by cost or complexity. Our mission is to empower students, professionals, creators, and everyday users with AI that helps them express ideas clearly and confidently.</p>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-form="signup">Sign Up</div>
+          <div class="auth-tab" data-form="login">Log In</div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signup-form">
+          <form id="signupForm">
+            <div class="form-group">
+              <label for="signup-firstname">First Name</label>
+              <input type="text" id="signup-firstname" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-surname">Surname</label>
+              <input type="text" id="signup-surname" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <div style="position:relative;">
+                <input type="password" id="signup-password" class="form-input" required minlength="6">
+                <button type="button" class="password-toggle" onclick="togglePassword('signup-password')">👁️</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-confirm">Confirm Password</label>
+              <div style="position:relative;">
+                <input type="password" id="signup-confirm" class="form-input" required>
+                <button type="button" class="password-toggle" onclick="togglePassword('signup-confirm')">👁️</button>
+              </div>
+            </div>
+            <button type="submit" class="auth-button">Create Free Account</button>
+          </form>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" style="display:none;">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <div style="position:relative;">
+                <input type="password" id="login-password" class="form-input" required>
+                <button type="button" class="password-toggle" onclick="togglePassword('login-password')">👁️</button>
+              </div>
+            </div>
+            <button type="submit" class="auth-button">Log In</button>
+          </form>
+        </div>
+
+        <div id="auth-message"></div>
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section id="how-it-works">
+  <!-- AI Dashboard (Home Page Experience) -->
+  <section id="dashboard" class="dashboard">
     <div class="container">
-      <h2 class="section-title">How It Works</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Enter Your Prompt</h3>
-          <p>Type what you want to write or improve — a social media caption, email, essay, or any text.</p>
+      <div class="task-card">
+        <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem;">New Task</h2>
+        <textarea id="prompt-input" class="prompt-input" placeholder="Enter your prompt here..."></textarea>
+
+        <div class="mode-toggle">
+          <button id="text-mode" class="mode-button active">Text</button>
+          <button id="image-mode" class="mode-button">Image</button>
         </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>AI Processes It</h3>
-          <p>Our advanced AI model analyzes your input and understands context, tone, and intent.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Get Results</h3>
-          <p>Receive high-quality generated or rewritten content tailored to your needs.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">4</div>
-          <h3>Copy & Use</h3>
-          <p>Copy the result, make final edits if needed, and use it anywhere.</p>
-        </div>
+
+        <button id="generate-button" class="generate-button">Generate</button>
+        <p style="margin-top: 1rem; color: var(--text-light);">Tasks used: <span id="usage">0 / Unlimited</span></p>
       </div>
-    </div>
-  </section>
 
-  <!-- Pricing -->
-  <section id="pricing">
-    <div class="container">
-      <h2 class="section-title">Pricing Plans</h2>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3 class="plan-name">Free</h3>
-          <div class="plan-price">GHS 0<span style="font-size:1rem;color:var(--text-light)">/month</span></div>
-          <ul class="plan-features">
-            <li>Limited daily text generations</li>
-            <li>Basic AI model</li>
-            <li>Standard processing speed</li>
-          </ul>
-        </div>
-
-        <div class="pricing-card featured">
-          <div class="featured-badge">Most Popular</div>
-          <h3 class="plan-name">Creator</h3>
-          <div class="plan-price">GHS 20<span style="font-size:1rem;color:var(--text-light)">/month</span></div>
-          <ul class="plan-features">
-            <li>100 text generations/day</li>
-            <li>20 image generations/day</li>
-            <li>High-quality AI model</li>
-            <li>Faster processing</li>
-          </ul>
-        </div>
-
-        <div class="pricing-card">
-          <h3 class="plan-name">Pro</h3>
-          <div class="plan-price">GHS 45<span style="font-size:1rem;color:var(--text-light)">/month</span></div>
-          <ul class="plan-features">
-            <li>Unlimited text generations</li>
-            <li>100 image generations/day</li>
-            <li>Maximum AI quality</li>
-            <li>Commercial usage rights</li>
-            <li>Priority processing</li>
-          </ul>
-        </div>
-      </div>
-      <p style="text-align:center;margin-top:3rem;color:var(--text-light);">
-        All payments are securely processed through a trusted third-party provider (Paystack).
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="container">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="faq">
-        <div class="faq-item">
-          <div class="faq-question">What is Virel?</div>
-          <div class="faq-answer">
-            <p>Virel is an AI-powered writing assistant that helps you create, rewrite, and improve text quickly and effectively.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Is Virel free?</div>
-          <div class="faq-answer">
-            <p>Yes! Virel offers a generous free plan with daily limits. Paid plans unlock higher usage and premium features.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">What can I use Virel for?</div>
-          <div class="faq-answer">
-            <p>Social media captions, school essays, emails, business writing, creative content, and any text improvement.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">How does the AI work?</div>
-          <div class="faq-answer">
-            <p>Virel uses advanced large language models trained on vast amounts of text to understand and generate human-like content.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Is my data safe?</div>
-          <div class="faq-answer">
-            <p>Yes. We do not store your prompts long-term and use industry-standard encryption. Your privacy is important to us.</p>
-          </div>
+      <div class="task-list">
+        <h2 class="section-title">Your Tasks</h2>
+        <div id="tasks-container">
+          <p style="text-align:center; color:var(--text-light); padding:2rem;">Your generated tasks will appear here</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Customer Feedback -->
-  <section id="feedback">
-    <div class="container">
-      <h2 class="section-title">Customer Feedback</h2>
-      <div class="feedback">
-        <p>Virel is currently in early access and beta testing. We're working hard to bring you the best AI writing experience.</p>
-        <p style="margin-top:2rem;font-style:italic;">"The future of writing is here — and it's made in Ghana."</p>
-      </div>
-    </div>
-  </section>
+  <!-- Pricing, FAQ, Terms, Contact — keep your existing sections -->
 
-  <!-- Terms of Service -->
-  <section id="terms">
-    <div class="container">
-      <h2 class="section-title">Terms of Service</h2>
-      <div class="terms">
-        <p>By using Virel, you agree to the following terms:</p>
-        <ol>
-          <li>Virel provides AI-generated content as a tool to assist users in writing and communication.</li>
-          <li>Users are solely responsible for how they use the generated content and must ensure it complies with applicable laws and platform guidelines.</li>
-          <li>The service must not be used for illegal, harmful, deceptive, or malicious purposes.</li>
-          <li>Payments for premium plans are processed securely through third-party payment processors (Paystack/Stripe). Virel does not store payment information.</li>
-          <li>Virel reserves the right to suspend or terminate accounts that violate these terms.</li>
-          <li>We may update these terms from time to time. Continued use constitutes acceptance of changes.</li>
-        </ol>
-        <p style="margin-top:2rem;">Last updated: January 2026</p>
-      </div>
-    </div>
-  </section>
+  <!-- Firebase & Paystack Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <h2 class="section-title">Contact Us</h2>
-      <div class="contact">
-        <p>Have questions or feedback? We'd love to hear from you.</p>
-        <div class="contact-email">boatengrion@gmail.com</div>
-        <p>We're a small team building something big — your support means everything.</p>
-      </div>
-    </div>
-  </section>
+    const firebaseConfig = {
+      // REPLACE WITH YOUR CONFIG
+      apiKey: "YOUR_API_KEY",
+      authDomain: "your-project.firebaseapp.com",
+      projectId: "your-project",
+      storageBucket: "your-project.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "1:123456789:web:abc123"
+    };
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Virel. All rights reserved. Made with ❤️ in Ghana.</p>
-    </div>
-  </footer>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-  <script>
-    // Simple FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(item => {
-      item.addEventListener('click', () => {
-        item.parentElement.classList.toggle('active');
+    // Show/hide dashboard based on login
+    onAuthStateChanged(auth, (user) => {
+      const dashboard = document.getElementById('dashboard');
+      if (user) {
+        dashboard.style.display = 'block';
+        loadTasks(user.uid);
+        document.getElementById('auth').style.display = 'none';
+      } else {
+        dashboard.style.display = 'none';
+        document.getElementById('auth').style.display = 'block';
+      }
+    });
+
+    // Tab switching
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('signup-form').style.display = tab.dataset.form === 'signup' ? 'block' : 'none';
+        document.getElementById('login-form').style.display = tab.dataset.form === 'login' ? 'block' : 'none';
       });
     });
 
-    // Smooth scrolling for navigation links
+    // Password toggle
+    window.togglePassword = function(id) {
+      const field = document.getElementById(id);
+      field.type = field.type === 'password' ? 'text' : 'password';
+    };
+
+    // Sign Up
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const firstName = document.getElementById('signup-firstname').value.trim();
+      const surname = document.getElementById('signup-surname').value.trim();
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const confirm = document.getElementById('signup-confirm').value;
+      const messageDiv = document.getElementById('auth-message');
+
+      if (password !== confirm) {
+        messageDiv.innerHTML = '<div class="auth-message error-message">Passwords do not match</div>';
+        return;
+      }
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await setDoc(doc(db, "users", user.uid), {
+          firstName, surname, email,
+          subscriptionPlan: 'Free',
+          createdAt: new Date()
+        });
+
+        messageDiv.innerHTML = '<div class="auth-message success-message">Welcome to Virel! 🎉</div>';
+      } catch (error) {
+        messageDiv.innerHTML = `<div class="auth-message error-message">${error.message}</div>`;
+      }
+    });
+
+    // Log In
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const messageDiv = document.getElementById('auth-message');
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        messageDiv.innerHTML = '<div class="auth-message success-message">Welcome back!</div>';
+      } catch (error) {
+        messageDiv.innerHTML = `<div class="auth-message error-message">${error.message}</div>`;
+      }
+    });
+
+    // Dashboard Logic
+    let isTextMode = true;
+    document.getElementById('text-mode').addEventListener('click', () => {
+      isTextMode = true;
+      document.getElementById('text-mode').classList.add('active');
+      document.getElementById('image-mode').classList.remove('active');
+    });
+
+    document.getElementById('image-mode').addEventListener('click', () => {
+      isTextMode = false;
+      document.getElementById('image-mode').classList.add('active');
+      document.getElementById('text-mode').classList.remove('active');
+    });
+
+    document.getElementById('generate-button').addEventListener('click', async () => {
+      const prompt = document.getElementById('prompt-input').value.trim();
+      if (!prompt) return alert('Please enter a prompt');
+
+      const button = document.getElementById('generate-button');
+      button.disabled = true;
+      button.textContent = 'Generating...';
+
+      const endpoint = isTextMode ? 'generate_text' : 'generate_image';
+      const body = {
+        prompt: prompt,
+        user_id: auth.currentUser.uid
+      };
+
+      try {
+        const res = await fetch(`https://your-region-your-project.cloudfunctions.net/${endpoint}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+
+        if (data.text || data.image_url) {
+          // Save task to Firestore (you can expand this)
+          alert(isTextMode ? 'Text generated!' : 'Image generated!');
+          document.getElementById('prompt-input').value = '';
+        } else {
+          alert('Error: ' + (data.error || 'Unknown'));
+        }
+      } catch (err) {
+        alert('Network error');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Generate';
+      }
+    });
+
+    // Load tasks (placeholder)
+    function loadTasks(userId) {
+      // In future: use onSnapshot to listen for real tasks
+      document.getElementById('tasks-container').innerHTML = '<p style="text-align:center; color:var(--text-light);">Start generating to see your tasks!</p>';
+    }
+  </script>
+
+  <!-- Paystack Script -->
+  <script src="https://js.paystack.co/v2/inline.js"></script>
+
+  <!-- Smooth Scroll & FAQ -->
+  <script>
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('.faq-question').forEach(item => {
+      item.addEventListener('click', () => {
+        item.parentElement.classList.toggle('active');
       });
     });
   </script>
